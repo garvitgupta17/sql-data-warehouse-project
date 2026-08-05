@@ -17,7 +17,6 @@ Usage Example:
 ===============================================================================
  */
 
-
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
 
@@ -35,7 +34,6 @@ BEGIN
 		PRINT 'Loading CRM Tables';
 		PRINT '--------------------------------';
 		
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_cust_info';
 		TRUNCATE TABLE bronze.crm_cust_info;
@@ -51,7 +49,6 @@ BEGIN
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------';
-		
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_prd_info';
@@ -69,7 +66,6 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------';
 		
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_sales_details';
 		TRUNCATE TABLE bronze.crm_sales_details;
@@ -86,11 +82,9 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------';
 		
-		
 		PRINT '--------------------------------';
 		PRINT 'Loading ERP Tables';
 		PRINT '--------------------------------';
-		
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_cust_az12';
@@ -108,7 +102,6 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------';
 		
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_loc_a101';
 		TRUNCATE TABLE bronze.erp_loc_a101;
@@ -124,7 +117,6 @@ BEGIN
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------';
-		
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_px_cat_g1v2';
@@ -159,7 +151,7 @@ BEGIN
 		PRINT 'Error Line   : ' + CAST(ERROR_LINE() AS NVARCHAR);
 		PRINT '================================';
 	END CATCH
-	
+		
 END;
 
 
