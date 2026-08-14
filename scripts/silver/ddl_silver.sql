@@ -9,7 +9,6 @@ Run this script to re-define the DDL structure of 'silver' Tables
 ===============================================================================
 */
 
-
 IF OBJECT_ID ('silver.crm_cust_info', 'U') IS NOT NULL
 DROP TABLE silver.crm_cust_info;
 CREATE TABLE silver.crm_cust_info (
@@ -22,7 +21,6 @@ CREATE TABLE silver.crm_cust_info (
 	cst_create_date DATE,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-
 
 IF OBJECT_ID ('silver.crm_prd_info', 'U') IS NOT NULL
 DROP TABLE silver.crm_prd_info;
@@ -37,7 +35,6 @@ CREATE TABLE silver.crm_prd_info (
 	prd_end_dt DATE,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-
 
 IF OBJECT_ID ('silver.crm_sales_details', 'U') IS NOT NULL
 DROP TABLE silver.crm_sales_details;
@@ -63,7 +60,6 @@ CREATE TABLE silver.erp_cust_az12 (
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
-
 IF OBJECT_ID ('silver.erp_loc_a101', 'U') IS NOT NULL
 DROP TABLE silver.erp_loc_a101;
 CREATE TABLE silver.erp_loc_a101 (
@@ -71,7 +67,6 @@ CREATE TABLE silver.erp_loc_a101 (
 	cntry NVARCHAR(50),
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-
 
 IF OBJECT_ID ('silver.erp_px_cat_g1v2', 'U') IS NOT NULL
 DROP TABLE silver.erp_px_cat_g1v2;
