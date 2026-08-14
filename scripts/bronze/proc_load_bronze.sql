@@ -19,20 +19,18 @@ Usage Example:
 
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
-
-	PRINT '================================';
-	PRINT 'Loading Bronze Layer';
-	PRINT '================================';
-	
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME;
 
 	BEGIN TRY
+		PRINT '======================================';
+		PRINT 'Loading Bronze Layer';
+		PRINT '======================================';
 	
 		SET @batch_start_time = GETDATE();
 	
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		PRINT 'Loading CRM Tables';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_cust_info';
@@ -48,7 +46,7 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_prd_info';
@@ -64,7 +62,7 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.crm_sales_details';
@@ -80,11 +78,11 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		PRINT 'Loading ERP Tables';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_cust_az12';
@@ -100,7 +98,7 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_loc_a101';
@@ -116,7 +114,7 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_px_cat_g1v2';
@@ -132,26 +130,24 @@ BEGIN
 		);
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
-		PRINT '--------------------------------';
+		PRINT '--------------------------------------';
 		
 		SET @batch_end_time = GETDATE();
-		PRINT '================================';
+		PRINT '======================================';
 		PRINT 'Loading bronze layer is completed';
 		PRINT '-Total load duration:' + CAST(DATEDIFF(SECOND, @batch_start_time, @batch_end_time) AS NVARCHAR) + ' seconds';
-		PRINT '================================';
-		
+		PRINT '======================================';	
 	END TRY
 	
 	BEGIN CATCH
-		PRINT '================================';
+		PRINT '======================================';
 		PRINT 'Error occured during loading bronze layer';
 		PRINT 'Error Message: ' + Error_Message();
 		PRINT 'Error Message: ' + Cast(ERROR_NUMBER() As NVARCHAR);
 		PRINT 'Error Message: ' + Cast(ERROR_STATE() As NVARCHAR);
 		PRINT 'Error Line   : ' + CAST(ERROR_LINE() AS NVARCHAR);
-		PRINT '================================';
-	END CATCH
-		
+		PRINT '======================================';
+	END CATCH	
 END;
 
 
