@@ -20,14 +20,13 @@ Usage Example:
 
 CREATE OR ALTER PROCEDURE silver.load_silver AS
 BEGIN
-	
-	PRINT '======================================';
-	PRINT 'Loading Silver Layer';
-	PRINT '======================================';
-	
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME;
 	
 	BEGIN TRY
+		PRINT '======================================';
+		PRINT 'Loading Silver Layer';
+		PRINT '======================================';
+
 		SET @batch_start_time = GETDATE()
 		
 		PRINT '--------------------------------------';
@@ -74,7 +73,6 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------';
 		
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: crm_prd_info'
 		TRUNCATE TABLE silver.crm_cust_info;
@@ -110,7 +108,6 @@ BEGIN
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------';
-		
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: crm_sales_details'
@@ -157,11 +154,9 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------';
 		
-		
 		PRINT '--------------------------------------';
 		PRINT 'Loading CRM Tables';
 		PRINT '--------------------------------------';
-		
 		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: erp_cust_az12'
@@ -191,7 +186,6 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------';
 		
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: erp_loc_a101'
 		TRUNCATE TABLE silver.erp_loc_a101;
@@ -213,7 +207,6 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------';
 
-		
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: erp_px_cat_g1v2'
 		TRUNCATE TABLE silver.erp_px_cat_g1v2;
@@ -253,6 +246,5 @@ BEGIN
 		PRINT 'Error Line   : ' + CAST(ERROR_LINE() AS NVARCHAR);
 		PRINT '======================================';
 	END CATCH
-	
 END
 
